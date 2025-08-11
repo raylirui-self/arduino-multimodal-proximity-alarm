@@ -48,8 +48,8 @@ This repository documents my progression from Arduino beginner to implementing p
 - Modular programming
 
 ## 📖 Documentation
-- [Phase 1 Notes](phase1-initial/docs/notes.md) - Initial learnings and mistakes
-- [Improvements Log](phase2-refactored/docs/improvements.md) - Refactoring decisions
+- [Phase 1 Notes](phase1-initial/notes.md) - Initial learnings and mistakes
+- [Improvements Log](phase2-refactored/improvements.md) - Refactoring decisions
 - [Hardware Setup](hardware/assembly_guide.md) - Wiring and assembly guide
 
 ## 🔗 Course Reference
