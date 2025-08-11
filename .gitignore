@@ -1,0 +1,23 @@
+# Arduino build artifacts
+*.hex
+*.elf
+*.o
+*.d
+
+# IDE specific files
+.vscode/
+*.code-workspace
+.DS_Store
+Thumbs.db
+
+# Windows specific
+desktop.ini
+.BIN/
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Compiled binaries
+build/
