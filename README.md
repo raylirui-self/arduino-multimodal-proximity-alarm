@@ -12,8 +12,7 @@ This project demonstrates the integration of multiple sensors and actuators in a
 
 ## 📁 Project Structure
 - **Phase 1**: Initial implementation based on course requirements
-- **Phase 2**: AI-reviewed and manually refactored code
-- **Phase 3**: Production-ready professional implementation
+- **Phase 2**: Refactoring specs and architecture design
 
 ## 🛠️ Hardware Components
 - Arduino UNO R3
@@ -49,8 +48,12 @@ This repository documents my progression from Arduino beginner to implementing p
 
 ## 📖 Documentation
 - [Phase 1 Notes](phase1-initial/notes.md) - Initial learnings and mistakes
-- [Improvements Log](phase2-refactored/improvements.md) - Refactoring decisions
-- [Hardware Setup](hardware/assembly_guide.md) - Wiring and assembly guide
+- [Phase 2 Requirements](phase2-refactored/REQUIREMENTS.md) - Feature and hardware specs
+- [Phase 2 Architecture](phase2-refactored/ARCHITECTURE.md) - System design and patterns
+- [Phase 2 Implementation](phase2-refactored/IMPLEMENTATION.md) - Code structure and patterns
+- [Phase 2 Testing](phase2-refactored/TESTING.md) - Test plan and debugging
+- [Hardware BOM](hardware/bom.csv) - Bill of materials
+- [Hardware Schematics](hardware/schematics.pdf) - Circuit schematics
 
 ## 🔗 Course Reference
 Based on concepts and Final project requirements from "Arduino For Beginners - 2025 Complete Course" by Edouard Renard (Udemy)

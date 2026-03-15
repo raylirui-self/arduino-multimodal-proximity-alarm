@@ -35,7 +35,7 @@ const byte LCD_D4_PIN = 6;
 const byte LCD_D5_PIN = 7;
 const byte LCD_D6_PIN = 8;
 const byte LCD_D7_PIN = 9;
-String distanceMessage = "";
+char distanceMessage[17]; // 16 chars + null terminator for LCD
 
 LiquidCrystal lcd(LCD_RS_PIN, LCD_E_PIN, LCD_D4_PIN, LCD_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
 
@@ -251,34 +251,21 @@ void lcdPrintAllDistance() {
 }
 
 void lcdPrintDistance() {
-	// Serial.println(ultrasonicEchoDistanceCm);
-	
 	double distance = ultrasonicEchoDistanceCm;
-	String distanceUnit = " cm    ";
+	const char* distanceUnit = " cm";
 	if (systemUnit == IN) {
 		distance = ultrasonicEchoDistanceIn;
-		distanceUnit = " in    ";
+		distanceUnit = " in";
 	}
 
-	int spaceToAdd = 0;
-	if (distance < 10) {
-		spaceToAdd = 2;
-	}
-	else if (distance < 100) {
-		spaceToAdd = 1;
-	}
-
-	distanceMessage = "Dist: ";
-	for (int i = 0; i < spaceToAdd; i++) {
-		distanceMessage += " ";
-	}
-	distanceMessage += String(distance, 2);
-	distanceMessage += distanceUnit;
-
-	// Serial.println(distanceMessage);
+	// Right-align distance value using width specifier
+	dtostrf(distance, 6, 2, distanceMessage);
 
 	lcd.setCursor(0, 0);
+	lcd.print("Dist:");
 	lcd.print(distanceMessage);
+	lcd.print(distanceUnit);
+	lcd.print("   ");
 }
 
 // #Main ==================================================================================================
@@ -329,7 +316,7 @@ void loop() {
 		if ((systemMode == LCD_RESET) && (commandValue == IR_BUTTON_OFF)) {
 			systemMode = LCD_DISTANCE;
 			systemUnit = CM;
-			EEPROM.write(EEPROM_ADDRESS, (byte)systemUnit);
+			EEPROM.update(EEPROM_ADDRESS, (byte)systemUnit);
 		}
 		switch (commandValue) {
 			case IR_BUTTON_FUNCSTOP: {
@@ -350,7 +337,7 @@ void loop() {
 			}
 			case IR_BUTTON_UNIT_TOGGLE: {
 				systemUnit = (systemUnit == CM) ? IN : CM;  // Toggle between CM and IN
-				EEPROM.write(EEPROM_ADDRESS, (byte)systemUnit);
+				EEPROM.update(EEPROM_ADDRESS, (byte)systemUnit);
 				break;
 			}
 			default: {
@@ -365,7 +352,7 @@ void loop() {
 		//Ultrasonic 
 		if (timeNow - lastTimeUltrasonicTrigger >= ultrasonicTriggerDelay) {
 			ultrasonicSendTrigger();
-			lastTimeUltrasonicTrigger += ultrasonicTriggerDelay;
+			lastTimeUltrasonicTrigger = timeNow;
 			if (newTimeAvailable) {
 				newTimeAvailable = false;
 				ultrasonicEchoDuration = ultrasonicEchoEnd - ultrasonicEchoBegin;
@@ -402,7 +389,7 @@ void loop() {
 	// get luminosity value & change Green LED brightness
 	if (timeNow - lastTimeLuminosityRead > luminosityReadDelay) {
 		luminosityValue = analogRead(PHOTORESISTOR_PIN);
-		lastTimeLuminosityRead += luminosityReadDelay;
+		lastTimeLuminosityRead = timeNow;
 		int greenLedDuty = map(luminosityValue, minLuminosity, maxLuminosity, 255, 0);
 		analogWrite(LED_GREEN_PIN, greenLedDuty);
 	}

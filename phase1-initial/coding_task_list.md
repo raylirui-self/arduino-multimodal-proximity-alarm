@@ -8,7 +8,7 @@
 	[x] toggle yellow & red LEDs after object getting too close. 
 		[x] shuts down functionalities until a button press
 			[x]  remote controller press to un lock 
-			[] button press press to unlock 
+			[x] button press press to unlock
 		[x] *LCD* display message
 [x] green LED inversely relates to luminosity
 	[x] potentiometer to set max LED brightness
@@ -22,7 +22,7 @@
 			[x] additional button-push confirmation to reset system
 				- return to distance in cm
 				- return to display distance
-[] default distance unit in EEPROM
+[x] default distance unit in EEPROM
 
 ## technical requirements
 1. LED
@@ -44,16 +44,16 @@
 	[x] *System Reset* screen
 		[x] "Power On/Off" button push for reset
 			[x] Distance in cm
-			[] EEPROM in cm
+			[x] EEPROM in cm
 	[x] *System Shutdown* screen
 4. IR Remote Controller
 	[x] "Play": Re-enable system
 	[x] "^v": toggle LCD screens
 	[x] "Power On/Off": reset system in the *System Reset*
 5. Button
-	[] Re-enable system
+	[x] Re-enable system
 6. EEPROM
-	[] stores the current Distance unit (cm | in)
+	[x] stores the current Distance unit (cm | in)
 7. Photoresistor
 	[x] get value every 100ms
 
