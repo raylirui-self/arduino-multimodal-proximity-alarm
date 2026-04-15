@@ -6,6 +6,7 @@
 
 # IDE specific files
 .vscode/
+.claude/
 *.code-workspace
 .DS_Store
 Thumbs.db
